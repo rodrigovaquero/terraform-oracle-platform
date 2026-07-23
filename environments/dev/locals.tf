@@ -51,5 +51,21 @@ locals {
       ]
     }
 
+    rds = {
+
+      description = "RDS Security Group"
+
+      ingress_rules = []
+
+      egress_rules = [
+        {
+          description = "Allow all outbound traffic"
+          from_port   = 0
+          to_port     = 0
+          protocol    = "-1"
+          cidr_blocks = ["0.0.0.0/0"]
+        }
+      ]
+    }
   }
 }

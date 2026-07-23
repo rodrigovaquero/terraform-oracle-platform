@@ -95,3 +95,31 @@ module "security_group_app" {
 
   tags = local.common_tags
 }
+
+module "security_group_rds" {
+
+  source = "../../modules/security-group"
+
+  name = "rds"
+
+  description = local.security_groups.rds.description
+
+  vpc_id = module.network.vpc_id
+
+  ingress_rules = [
+    {
+      description = "Allow Oracle traffic from app"
+      from_port   = 1521
+      to_port     = 1521
+      protocol    = "tcp"
+
+      cidr_blocks = []
+
+      source_security_group_id = module.security_group_app.id
+    }
+  ]
+
+  egress_rules = local.security_groups.rds.egress_rules
+
+  tags = local.common_tags
+}

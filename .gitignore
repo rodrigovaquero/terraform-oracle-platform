@@ -26,3 +26,6 @@ terraform.rc
 # Windows
 Thumbs.db
 Desktop.ini
+
+# Lock files apenas dos módulos
+modules/**/.terraform.lock.hcl
