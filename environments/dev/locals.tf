@@ -67,5 +67,32 @@ locals {
         }
       ]
     }
+
+
+    alb = {
+
+      description = "ALB Security Group"
+
+      ingress_rules = [
+        {
+          description = "Allow HTTPS from internet"
+          from_port   = 443
+          to_port     = 443
+          protocol    = "tcp"
+          cidr_blocks = ["0.0.0.0/0"]
+        }
+      ]
+
+      egress_rules = [
+        {
+          description = "Allow all outbound traffic"
+          from_port   = 0
+          to_port     = 0
+          protocol    = "-1"
+          cidr_blocks = ["0.0.0.0/0"]
+        }
+      ]
+    }
+
   }
 }
